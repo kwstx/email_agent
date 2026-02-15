@@ -1,0 +1,61 @@
+Total outreaches: 8
+
+--- SAMPLE 1 ---
+To: Michael Leist <michael@kore.ai>
+Company: Kore.ai (kore.ai)
+Template: founder_discovery_compliance
+Subject: Quick question / Kore.ai agents
+Body:
+Hi Michael,
+
+I’ve been following Kore.ai and really like to see that you're deploying autonomous agents.
+
+I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents — basically, helping teams understand and manage data privacy risks like HIPAA.
+
+This isn’t a pitch — I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+
+Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
+
+Thanks so much,
+Kwstas
+-------------------
+
+--- SAMPLE 2 ---
+To: Prasanna Arikala <prasanna@kore.ai>
+Company: Kore.ai (kore.ai)
+Template: founder_discovery_compliance
+Subject: Quick question / Kore.ai agents
+Body:
+Hi Prasanna,
+
+I’ve been following Kore.ai and really like to see that you're deploying autonomous agents.
+
+I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents — basically, helping teams understand and manage data privacy risks like HIPAA.
+
+This isn’t a pitch — I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+
+Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
+
+Thanks so much,
+Kwstas
+-------------------
+
+--- SAMPLE 3 ---
+To: Brian Long <brian@tines.com>
+Company: Tines (tines.com)
+Template: founder_discovery_compliance
+Subject: Quick question / Tines agents
+Body:
+Hi Brian,
+
+I’ve been following Tines and really like to see that you're deploying autonomous agents.
+
+I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents — basically, helping teams understand and manage data privacy risks like HIPAA.
+
+This isn’t a pitch — I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+
+Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
+
+Thanks so much,
+Kwstas
+-------------------
