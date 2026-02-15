@@ -14,9 +14,10 @@ This plan outlines the steps for building a fully automated outbound prospecting
     - Modular project structure created.
     - Database schema implemented with SQLModel.
     - APScheduler integrated for recurring tasks.
-- [ ] **Step 3: Company Discovery Engine**
-    - Source discovery (Crunchbase, LinkedIn, AI Directories).
-    - Initial URL collection.
+- [x] **Step 3: Company Discovery Engine**
+    - Source discovery (Search engines, Partner directories, AI lists).
+    - Automated extraction and normalization of domains.
+    - Duplicate prevention and database storage.
 - [ ] **Step 4: Web Scraper & Signal Detector**
     - Scrape homepage, docs, and blogs.
     - Match keywords and patterns from `scoring_config.json`.
