@@ -82,9 +82,25 @@ class AgentSignalDetector:
             
         analysis = self.analyze_text(company.website_content)
         
-        company.fitness_score = analysis["total_score"] # This might be overwritten by other scoring categories later
+        company.fitness_score = analysis["total_score"]
         company.agent_maturity_level = analysis["maturity_level"]
-        company.signal_metadata = json.dumps(analysis["signals"])
+        
+        # Merge signals into existing metadata
+        existing_meta = {}
+        if company.signal_metadata:
+            try:
+                existing_meta = json.loads(company.signal_metadata)
+            except:
+                pass
+        
+        # We want to keep existing top-level keys (like risk_enrichment) 
+        # and update/add signals. We'll store signals under a 'signals' key
+        # or just keep them at top level but merge safely.
+        # For simplicity and backward compatibility, let's keep them at top level
+        # but only update keys that are in analysis["signals"]
+        
+        existing_meta.update(analysis["signals"])
+        company.signal_metadata = json.dumps(existing_meta)
         
         # Update fitness level based on threshold
         thresholds = self.config.get("thresholds", {})

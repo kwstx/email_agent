@@ -18,10 +18,17 @@ def run_scoring():
     detector = AgentSignalDetector()
     detector.run()
 
+from src.enrichment.risk_compliance import RiskComplianceEnricher
+
 def run_enrichment():
-    """Task to find decision makers for high-fit companies."""
+    """Task to enrich companies with risk signals and find decision makers."""
     logger.info(f"[{datetime.now()}] Starting enrichment task...")
-    # Logic will go in src/enrichment
+    
+    # 1. Risk and Compliance Enrichment
+    enricher = RiskComplianceEnricher()
+    enricher.run(force=False) # Only process new ones by default
+    
+    # 2. Contact enrichment logic will go here later
     pass
 
 def run_outreach():

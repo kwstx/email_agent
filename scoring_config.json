@@ -87,9 +87,14 @@
         "keywords": [
           "phi",
           "pii",
+          "pci",
+          "kyc",
           "financial records",
           "sensitive data",
-          "privacy policy"
+          "privacy policy",
+          "data encryption",
+          "data protection",
+          "personally identifiable information"
         ]
       },
       "COMP_L": {
@@ -97,21 +102,47 @@
         "points": 3,
         "keywords": [
           "soc2",
+          "soc 2",
           "iso 27001",
           "hipaa",
-          "gdpr"
+          "gdpr",
+          "fedramp",
+          "pcidss",
+          "pci dss",
+          "compliance certifications",
+          "trust center"
         ]
       },
-      "FIN_HEA": {
-        "description": "Regulated Vertical (Finance/Healthcare)",
+      "REG_IND": {
+        "description": "Regulated Vertical",
         "points": 3,
         "keywords": [
-          "finance",
           "fintech",
           "banking",
           "healthcare",
           "medical",
-          "insurance"
+          "insurance",
+          "legal",
+          "government",
+          "defense",
+          "pharmaceutical"
+        ]
+      },
+      "ENT_READY": {
+        "description": "Enterprise Readiness Features",
+        "points": 4,
+        "keywords": [
+          "audit logging",
+          "policy enforcement",
+          "enterprise readiness",
+          "role-based access",
+          "rbac",
+          "sso",
+          "single sign-on",
+          "saml",
+          "data residency",
+          "uptime sla",
+          "dedicated support"
         ]
       },
       "PRV_CLD": {
@@ -122,16 +153,20 @@
           "private cloud",
           "vpc",
           "self-hosted",
-          "air-gapped"
+          "air-gapped",
+          "local deployment",
+          "on-prem"
         ]
       },
       "ENT_FOC": {
-        "description": "Enterprise Focus",
+        "description": "Enterprise Tier",
         "points": 2,
         "keywords": [
           "enterprise plan",
           "fortune 500",
-          "enterprise grade"
+          "enterprise grade",
+          "custom contract",
+          "security page"
         ]
       }
     }
