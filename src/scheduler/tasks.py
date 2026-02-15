@@ -33,8 +33,10 @@ def run_enrichment():
     discoverer = PeopleDiscoverer()
     asyncio.run(discoverer.run())
 
+from src.outreach.generator import OutreachManager
+
 def run_outreach():
     """Task to send outreach emails."""
     logger.info(f"[{datetime.now()}] Starting outreach task...")
-    # Logic will go in src/outreach
-    pass
+    manager = OutreachManager()
+    manager.run()

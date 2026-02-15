@@ -41,7 +41,9 @@ class Contact(SQLModel, table=True):
     email: Optional[str] = Field(default=None, index=True)
     linkedin_url: Optional[str] = None
     is_verified: bool = Field(default=False)
-    outreach_status: str = Field(default="pending") # pending, sent, replied, bounced
+    outreach_status: str = Field(default="pending") # pending, active, completed, replied, bounced
+    outreach_stage: int = Field(default=0)
+    last_outreach_sent_at: Optional[datetime] = None
     relevance_score: int = Field(default=0)
     
     company: Company = Relationship(back_populates="contacts")
@@ -69,6 +71,7 @@ class Outreach(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     contact_id: int = Field(foreign_key="contact.id")
     template_id: str
+    stage: int = Field(default=1)
     sent_at: Optional[datetime] = None
     reply_received_at: Optional[datetime] = None
     status: str = Field(default="draft") # draft, queued, sent, failed, opened, clicked, replied

@@ -4,6 +4,10 @@ from loguru import logger
 
 def migrate_db():
     db_path = "data/prospects.db"
+    
+    # Ensure directory exists
+    os.makedirs("data", exist_ok=True)
+    
     if not os.path.exists(db_path):
         logger.warning(f"Database {db_path} not found. init_db will create it with correct schema.")
         return
@@ -42,6 +46,25 @@ def migrate_db():
         logger.info("Added relevance_score to contact table")
     except sqlite3.OperationalError:
         logger.info("relevance_score already exists in contact table")
+
+    # NEW COLUMNS FOR OUTREACH SEQUENCING
+    try:
+        cursor.execute("ALTER TABLE contact ADD COLUMN outreach_stage INTEGER DEFAULT 0")
+        logger.info("Added outreach_stage to contact table")
+    except sqlite3.OperationalError:
+        logger.info("outreach_stage already exists in contact table")
+
+    try:
+        cursor.execute("ALTER TABLE contact ADD COLUMN last_outreach_sent_at TIMESTAMP")
+        logger.info("Added last_outreach_sent_at to contact table")
+    except sqlite3.OperationalError:
+        logger.info("last_outreach_sent_at already exists in contact table")
+        
+    try:
+        cursor.execute("ALTER TABLE outreach ADD COLUMN stage INTEGER DEFAULT 1")
+        logger.info("Added stage to outreach table")
+    except sqlite3.OperationalError:
+        logger.info("stage already exists in outreach table")
 
     conn.commit()
     conn.close()
