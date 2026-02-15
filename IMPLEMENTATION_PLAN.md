@@ -9,10 +9,15 @@ This plan outlines the steps for building a fully automated outbound prospecting
     - Create `ICP_DEFINITION.md` and `scoring_config.json`.
 
 ## Phase 2: Discovery & Data Acquisition
-- [ ] **Step 2: Company Discovery Engine**
+- [x] **Step 2: Set up project environment and core infrastructure**
+    - Python environment initialized.
+    - Modular project structure created.
+    - Database schema implemented with SQLModel.
+    - APScheduler integrated for recurring tasks.
+- [ ] **Step 3: Company Discovery Engine**
     - Source discovery (Crunchbase, LinkedIn, AI Directories).
     - Initial URL collection.
-- [ ] **Step 3: Web Scraper & Signal Detector**
+- [ ] **Step 4: Web Scraper & Signal Detector**
     - Scrape homepage, docs, and blogs.
     - Match keywords and patterns from `scoring_config.json`.
     - Calculate fit score.
