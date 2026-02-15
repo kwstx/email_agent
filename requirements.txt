@@ -9,3 +9,4 @@ sqlmodel
 googlesearch-python
 tqdm
 aiohttp
+dnspython
