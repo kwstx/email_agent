@@ -3,7 +3,7 @@
     "AI_AGENT_MATURITY": {
       "AGENT_PROD": {
         "description": "Production-grade Agent Systems",
-        "points": 5,
+        "points": 6,
         "keywords": [
           "autonomous workflows",
           "multi agent coordination",
@@ -16,7 +16,7 @@
       },
       "AGENT_CORE": {
         "description": "Core Agent Indicators",
-        "points": 3,
+        "points": 4,
         "keywords": [
           "ai agents",
           "autonomous agents",
@@ -40,63 +40,9 @@
           "vector database",
           "embeddings"
         ]
-      },
-      "AI_EXP": {
-        "description": "AI Experimentation/Assistant",
-        "points": 1,
-        "keywords": [
-          "internal assistant",
-          "company copilot",
-          "chatbot",
-          "ai-powered"
-        ]
       }
     },
-    "MARKET_POSITION": {
-      "AI_NATV": {
-        "description": "AI Native Company",
-        "points": 4,
-        "keywords": [
-          "ai startup",
-          "ai infrastructure",
-          "llm infrastructure"
-        ]
-      },
-      "WKF_AUT": {
-        "description": "Workflow Automation Focus",
-        "points": 3,
-        "keywords": [
-          "workflow automation",
-          "process automation",
-          "low-code automation"
-        ]
-      },
-      "API_PLF": {
-        "description": "API Platform",
-        "points": 2,
-        "keywords": [
-          "api-first",
-          "api platform"
-        ]
-      }
-    },
-    "ENTERPRISE_RISK": {
-      "DATA_S": {
-        "description": "Sensitive Data Handling",
-        "points": 4,
-        "keywords": [
-          "phi",
-          "pii",
-          "pci",
-          "kyc",
-          "financial records",
-          "sensitive data",
-          "privacy policy",
-          "data encryption",
-          "data protection",
-          "personally identifiable information"
-        ]
-      },
+    "SECURITY_POSTURE": {
       "COMP_L": {
         "description": "Compliance Certifications",
         "points": 3,
@@ -109,8 +55,46 @@
           "fedramp",
           "pcidss",
           "pci dss",
-          "compliance certifications",
           "trust center"
+        ]
+      },
+      "ENT_READY": {
+        "description": "Enterprise Readiness Features",
+        "points": 4,
+        "keywords": [
+          "audit logging",
+          "policy enforcement",
+          "enterprise readiness",
+          "rbac",
+          "sso",
+          "saml",
+          "data residency"
+        ]
+      },
+      "PRV_CLD": {
+        "description": "Private/On-Prem Deployment",
+        "points": 4,
+        "keywords": [
+          "on-premises",
+          "private cloud",
+          "vpc",
+          "self-hosted",
+          "air-gapped"
+        ]
+      }
+    },
+    "INDUSTRY_RISK": {
+      "DATA_S": {
+        "description": "Sensitive Data Handling",
+        "points": 5,
+        "keywords": [
+          "phi",
+          "pii",
+          "pci",
+          "kyc",
+          "sensitive data",
+          "data protection",
+          "personally identifiable information"
         ]
       },
       "REG_IND": {
@@ -124,55 +108,62 @@
           "insurance",
           "legal",
           "government",
-          "defense",
-          "pharmaceutical"
+          "defense"
         ]
-      },
-      "ENT_READY": {
-        "description": "Enterprise Readiness Features",
+      }
+    },
+    "HIRING_ACTIVITY": {
+      "AI_HIRING": {
+        "description": "Hiring for AI/ML Roles",
         "points": 4,
         "keywords": [
-          "audit logging",
-          "policy enforcement",
-          "enterprise readiness",
-          "role-based access",
-          "rbac",
-          "sso",
-          "single sign-on",
-          "saml",
-          "data residency",
-          "uptime sla",
-          "dedicated support"
+          "ai engineer",
+          "ml engineer",
+          "nlp engineer",
+          "data scientist",
+          "hiring ai",
+          "llm engineer"
         ]
       },
-      "PRV_CLD": {
-        "description": "Private/On-Prem Deployment",
-        "points": 4,
+      "AGENT_HIRING": {
+        "description": "Hiring for Agent/Automation Roles",
+        "points": 5,
         "keywords": [
-          "on-premises",
-          "private cloud",
-          "vpc",
-          "self-hosted",
-          "air-gapped",
-          "local deployment",
-          "on-prem"
+          "automation engineer",
+          "agentic systems",
+          "workflow automation",
+          "autonomous systems engineer"
+        ]
+      }
+    },
+    "DEV_PLATFORM_MATURITY": {
+      "API_PLF": {
+        "description": "API Platform Maturity",
+        "points": 3,
+        "keywords": [
+          "api-first",
+          "api platform",
+          "developer tools",
+          "developer experience",
+          "dx",
+          "sdk"
         ]
       },
-      "ENT_FOC": {
-        "description": "Enterprise Tier",
+      "OPEN_SRC": {
+        "description": "Open Source Contribution/Focus",
         "points": 2,
         "keywords": [
-          "enterprise plan",
-          "fortune 500",
-          "enterprise grade",
-          "custom contract",
-          "security page"
+          "open source",
+          "github",
+          "contribute",
+          "oss"
         ]
       }
     }
   },
   "thresholds": {
     "high_fit": 15,
-    "medium_fit": 8
+    "medium_fit": 7,
+    "disqualified": 4
   }
 }

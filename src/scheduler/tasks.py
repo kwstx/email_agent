@@ -19,6 +19,7 @@ def run_scoring():
     detector.run()
 
 from src.enrichment.risk_compliance import RiskComplianceEnricher
+from src.enrichment.people_discovery import PeopleDiscoverer
 
 def run_enrichment():
     """Task to enrich companies with risk signals and find decision makers."""
@@ -28,8 +29,9 @@ def run_enrichment():
     enricher = RiskComplianceEnricher()
     enricher.run(force=False) # Only process new ones by default
     
-    # 2. Contact enrichment logic will go here later
-    pass
+    # 2. People Discovery
+    discoverer = PeopleDiscoverer()
+    asyncio.run(discoverer.run())
 
 def run_outreach():
     """Task to send outreach emails."""

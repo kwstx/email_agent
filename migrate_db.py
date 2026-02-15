@@ -37,6 +37,12 @@ def migrate_db():
     except sqlite3.OperationalError:
         logger.info("occurrences already exists in companysignallink table")
 
+    try:
+        cursor.execute("ALTER TABLE contact ADD COLUMN relevance_score INTEGER DEFAULT 0")
+        logger.info("Added relevance_score to contact table")
+    except sqlite3.OperationalError:
+        logger.info("relevance_score already exists in contact table")
+
     conn.commit()
     conn.close()
     logger.success("Database migration completed.")

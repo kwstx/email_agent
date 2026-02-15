@@ -42,6 +42,7 @@ class Contact(SQLModel, table=True):
     linkedin_url: Optional[str] = None
     is_verified: bool = Field(default=False)
     outreach_status: str = Field(default="pending") # pending, sent, replied, bounced
+    relevance_score: int = Field(default=0)
     
     company: Company = Relationship(back_populates="contacts")
 
