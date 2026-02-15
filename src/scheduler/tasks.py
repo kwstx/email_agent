@@ -10,11 +10,13 @@ def run_scraping():
     crawler = WebCrawler()
     asyncio.run(crawler.run())
 
+from src.scoring.detector import AgentSignalDetector
+
 def run_scoring():
     """Task to score scraped companies."""
     logger.info(f"[{datetime.now()}] Starting scoring task...")
-    # Logic will go in src/scoring
-    pass
+    detector = AgentSignalDetector()
+    detector.run()
 
 def run_enrichment():
     """Task to find decision makers for high-fit companies."""

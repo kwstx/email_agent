@@ -88,20 +88,6 @@ class WebCrawler:
         
         return links
 
-    def detect_signals(self, text: str) -> Set[str]:
-        """Detects signals in text based on keywords from config."""
-        found_signals = set()
-        text_lower = text.lower()
-        
-        for category, signals in self.config.get("signals", {}).items():
-            for signal_key, details in signals.items():
-                keywords = details.get("keywords", [])
-                for kw in keywords:
-                    if kw.lower() in text_lower:
-                        found_signals.add(signal_key)
-                        break
-        return found_signals
-
     async def scrape_company(self, company_domain: str) -> Dict[str, str]:
         """Scrapes high-signal pages for a given domain."""
         base_url = f"https://{company_domain}"
@@ -180,19 +166,9 @@ class WebCrawler:
                             snippet = pages_content["homepage"][:500] + "..."
                             company.description = snippet
                             
-                        # Detect signals
-                        found_signal_keys = self.detect_signals(profile)
-                        if found_signal_keys:
-                            logger.info(f"Detected {len(found_signal_keys)} signals for {company.domain}: {found_signal_keys}")
-                            for sk in found_signal_keys:
-                                sig_statement = select(Signal).where(Signal.name == sk)
-                                signal_obj = session.exec(sig_statement).first()
-                                if signal_obj and signal_obj not in company.signals:
-                                    company.signals.append(signal_obj)
-                            
                         session.add(company)
                         session.commit()
-                        logger.success(f"Successfully scraped and updated {company.domain}")
+                        logger.success(f"Successfully scraped {company.domain}")
                     else:
                         # Mark as scraped even if failed to avoid infinite retries
                         company.is_scraped = True

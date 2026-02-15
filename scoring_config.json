@@ -1,74 +1,138 @@
 {
   "signals": {
     "AI_AGENT_MATURITY": {
-      "AGN_KW": {
-        "description": "Agent Keywords (autonomous, agentic, etc.)",
+      "AGENT_PROD": {
+        "description": "Production-grade Agent Systems",
+        "points": 5,
+        "keywords": [
+          "autonomous workflows",
+          "multi agent coordination",
+          "orchestration systems",
+          "agent orchestration",
+          "deployment orchestration",
+          "production agents",
+          "agent governance"
+        ]
+      },
+      "AGENT_CORE": {
+        "description": "Core Agent Indicators",
         "points": 3,
-        "keywords": ["ai agents", "autonomous agents", "agentic workflows", "autonomous workflows", "agentic"]
+        "keywords": [
+          "ai agents",
+          "autonomous agents",
+          "agentic workflows",
+          "agentic",
+          "copilot",
+          "copilots",
+          "prompt execution"
+        ]
       },
       "LLM_API": {
-        "description": "LLM API Usage (OpenAI, Anthropic, etc.)",
+        "description": "LLM API Usage",
         "points": 3,
-        "keywords": ["openai api", "anthropic", "langchain", "crewai", "pydanticai", "v1/chat/completions"]
+        "keywords": [
+          "openai api",
+          "anthropic",
+          "langchain",
+          "crewai",
+          "pydanticai",
+          "v1/chat/completions",
+          "vector database",
+          "embeddings"
+        ]
       },
-      "AI_PROD": {
-        "description": "AI Product Line",
-        "points": 2,
-        "keywords": ["ai product", "ai-powered", "autonomous module"]
-      },
-      "DEV_TOOL": {
-        "description": "Dev Tooling/APIs",
-        "points": 2,
-        "keywords": ["api docs", "developer platform", "automation platform"]
-      },
-      "INT_COP": {
-        "description": "Internal Copilots",
+      "AI_EXP": {
+        "description": "AI Experimentation/Assistant",
         "points": 1,
-        "keywords": ["internal assistant", "company copilot"]
+        "keywords": [
+          "internal assistant",
+          "company copilot",
+          "chatbot",
+          "ai-powered"
+        ]
       }
     },
     "MARKET_POSITION": {
       "AI_NATV": {
         "description": "AI Native Company",
         "points": 4,
-        "keywords": ["ai startup", "ai infrastructure", "llm infrastructure"]
+        "keywords": [
+          "ai startup",
+          "ai infrastructure",
+          "llm infrastructure"
+        ]
       },
       "WKF_AUT": {
         "description": "Workflow Automation Focus",
         "points": 3,
-        "keywords": ["workflow automation", "process automation", "low-code automation"]
+        "keywords": [
+          "workflow automation",
+          "process automation",
+          "low-code automation"
+        ]
       },
       "API_PLF": {
         "description": "API Platform",
         "points": 2,
-        "keywords": ["api-first", "api platform"]
+        "keywords": [
+          "api-first",
+          "api platform"
+        ]
       }
     },
     "ENTERPRISE_RISK": {
       "DATA_S": {
         "description": "Sensitive Data Handling",
         "points": 4,
-        "keywords": ["phi", "pii", "financial records", "sensitive data", "privacy policy"]
+        "keywords": [
+          "phi",
+          "pii",
+          "financial records",
+          "sensitive data",
+          "privacy policy"
+        ]
       },
       "COMP_L": {
         "description": "Compliance Certifications",
         "points": 3,
-        "keywords": ["soc2", "iso 27001", "hipaa", "gdpr"]
+        "keywords": [
+          "soc2",
+          "iso 27001",
+          "hipaa",
+          "gdpr"
+        ]
       },
       "FIN_HEA": {
         "description": "Regulated Vertical (Finance/Healthcare)",
         "points": 3,
-        "keywords": ["finance", "fintech", "banking", "healthcare", "medical", "insurance"]
+        "keywords": [
+          "finance",
+          "fintech",
+          "banking",
+          "healthcare",
+          "medical",
+          "insurance"
+        ]
       },
       "PRV_CLD": {
         "description": "Private/On-Prem Deployment",
         "points": 4,
-        "keywords": ["on-premises", "private cloud", "vpc", "self-hosted", "air-gapped"]
+        "keywords": [
+          "on-premises",
+          "private cloud",
+          "vpc",
+          "self-hosted",
+          "air-gapped"
+        ]
       },
       "ENT_FOC": {
         "description": "Enterprise Focus",
         "points": 2,
-        "keywords": ["enterprise plan", "fortune 500", "enterprise grade"]
+        "keywords": [
+          "enterprise plan",
+          "fortune 500",
+          "enterprise grade"
+        ]
       }
     }
   },

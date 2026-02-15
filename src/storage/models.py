@@ -5,6 +5,8 @@ from sqlmodel import Field, Relationship, SQLModel, create_engine, Session
 class CompanySignalLink(SQLModel, table=True):
     company_id: Optional[int] = Field(default=None, foreign_key="company.id", primary_key=True)
     signal_id: Optional[int] = Field(default=None, foreign_key="signal.id", primary_key=True)
+    intensity: float = Field(default=0.0)
+    occurrences: int = Field(default=0)
 
 class Company(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -19,10 +21,16 @@ class Company(SQLModel, table=True):
     is_scored: bool = Field(default=False)
     fitness_score: int = Field(default=0)
     fitness_level: Optional[str] = None # high_fit, medium_fit, low_fit
+    agent_maturity_level: Optional[str] = None # experimenting, production_ready, unknown
+    signal_metadata: Optional[str] = None # JSON string for detailed signal info
     
     # Relationships
     contacts: List["Contact"] = Relationship(back_populates="company")
-    signals: List["Signal"] = Relationship(back_populates="companies", link_model=CompanySignalLink)
+    signals: List["Signal"] = Relationship(
+        back_populates="companies", 
+        link_model=CompanySignalLink,
+        sa_relationship_kwargs={"viewonly": True} # Keep it simple for now or use the link model directly
+    )
     tasks: List["TaskLog"] = Relationship(back_populates="company")
 
 class Contact(SQLModel, table=True):
