@@ -1,0 +1,38 @@
+# Outbound Prospecting System Implementation Plan
+
+This plan outlines the steps for building a fully automated outbound prospecting engine for Engram.
+
+## Phase 1: Strategy & Definition
+- [x] **Step 1: Define Ideal Customer Profile (ICP)**
+    - Translate target customers into concrete signals.
+    - Assign points to signals for automated scoring.
+    - Create `ICP_DEFINITION.md` and `scoring_config.json`.
+
+## Phase 2: Discovery & Data Acquisition
+- [ ] **Step 2: Company Discovery Engine**
+    - Source discovery (Crunchbase, LinkedIn, AI Directories).
+    - Initial URL collection.
+- [ ] **Step 3: Web Scraper & Signal Detector**
+    - Scrape homepage, docs, and blogs.
+    - Match keywords and patterns from `scoring_config.json`.
+    - Calculate fit score.
+
+## Phase 3: Lead Research & Qualification
+- [ ] **Step 4: Decision Maker Identification**
+    - Identify technical roles (CTO, VP Eng, Head of AI).
+    - Verify roles via LinkedIn/Apollo/etc.
+- [ ] **Step 5: Contact Info Retrieval**
+    - Email finding and verification.
+
+## Phase 4: Outreach & Automation
+- [ ] **Step 6: Personalized Outreach Generation**
+    - LLM-based template generation using detected signals.
+- [ ] **Step 7: Automated Sending & Tracking**
+    - Integration with email provider.
+    - Classification of replies (Interest vs. Objection).
+
+## Phase 5: Optimization & Scaling
+- [ ] **Step 8: Pipeline Integration**
+    - Automatic CRM/Sheet updates.
+- [ ] **Step 9: Continuous Learning**
+    - Feedback loop based on reply rates.
