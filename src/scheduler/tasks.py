@@ -40,3 +40,14 @@ def run_outreach():
     logger.info(f"[{datetime.now()}] Starting outreach task...")
     manager = OutreachManager()
     manager.run()
+
+from src.outreach.inbox_monitor import InboxMonitor
+
+def run_inbox_monitoring():
+    """Task to check inbox for replies."""
+    logger.info(f"[{datetime.now()}] Starting inbox monitoring...")
+    try:
+        monitor = InboxMonitor()
+        monitor.process_inbox()
+    except Exception as e:
+        logger.error(f"Inbox monitoring failed: {e}")

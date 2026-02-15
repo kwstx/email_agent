@@ -10,3 +10,5 @@ googlesearch-python
 tqdm
 aiohttp
 dnspython
+imap-tools
+openai

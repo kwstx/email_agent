@@ -1,7 +1,7 @@
 import os
 from sqlmodel import SQLModel, create_engine, Session, select
 from loguru import logger
-from .models import Signal
+from .models import Signal, Company, Contact, Outreach, Reply, TaskLog
 
 DB_FILE = "data/prospects.db"
 engine = create_engine(f"sqlite:///{DB_FILE}", echo=False)

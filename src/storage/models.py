@@ -47,6 +47,7 @@ class Contact(SQLModel, table=True):
     relevance_score: int = Field(default=0)
     
     company: Company = Relationship(back_populates="contacts")
+    replies: List["Reply"] = Relationship(back_populates="contact")
 
 class Signal(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -76,3 +77,14 @@ class Outreach(SQLModel, table=True):
     reply_received_at: Optional[datetime] = None
     status: str = Field(default="draft") # draft, queued, sent, failed, opened, clicked, replied
     content: Optional[str] = None
+
+class Reply(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    contact_id: int = Field(foreign_key="contact.id")
+    content: str
+    classification: str # interest, deferral, irrelevance, referral, opt_out, unknown
+    received_at: datetime = Field(default_factory=datetime.utcnow)
+    original_subject: Optional[str] = None
+    thread_id: Optional[str] = None
+    
+    contact: Contact = Relationship(back_populates="replies")

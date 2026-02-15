@@ -78,7 +78,9 @@ class OutreachManager:
         last_outreach = session.exec(select(Outreach).where(Outreach.contact_id == contact.id).order_by(desc(Outreach.id))).first()
         
         if last_outreach and last_outreach.status == "replied":
-            if contact.outreach_status != "replied":
+            # If already classified (e.g. active_lead, opt_out), don't overwrite with generic 'replied'
+            ignore_statuses = ["replied", "active_lead", "deferred", "opt_out", "referral_needed", "not_interested"]
+            if contact.outreach_status not in ignore_statuses:
                 contact.outreach_status = "replied"
                 session.add(contact)
                 logger.info(f"Contact {contact.email} replied. Sequence stopped.")
