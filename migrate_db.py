@@ -84,6 +84,23 @@ def migrate_db():
     except sqlite3.OperationalError as e:
         logger.info(f"suppressionlist table: {e}")
 
+    # Create reply table if it doesn't exist
+    try:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS reply (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                contact_id INTEGER NOT NULL REFERENCES contact(id),
+                content TEXT NOT NULL,
+                classification TEXT NOT NULL,
+                received_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                original_subject TEXT,
+                thread_id TEXT
+            )
+        """)
+        logger.info("Ensured reply table exists")
+    except sqlite3.OperationalError as e:
+        logger.info(f"reply table: {e}")
+
     conn.commit()
     conn.close()
     logger.success("Database migration completed.")
