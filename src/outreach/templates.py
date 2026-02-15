@@ -1,6 +1,14 @@
 
 from typing import Dict, Any, List, Optional
 
+# Opt-out footer appended to every outgoing email
+OPT_OUT_FOOTER = (
+    "\n\n---\n"
+    "If you'd prefer not to receive further emails from me, simply reply "
+    "with 'unsubscribe' or 'remove me' and I'll make sure you're removed "
+    "immediately. No hard feelings at all."
+)
+
 class EmailTemplate:
     def __init__(self, id: str, subject_template: str, body_template: str, trigger_condition: callable = None):
         self.id = id
@@ -45,6 +53,9 @@ class EmailTemplate:
         # Render
         subject = self.subject_template.format(**variables)
         body = self.body_template.format(**variables)
+
+        # Append opt-out footer to every email
+        body += OPT_OUT_FOOTER
 
         return {"subject": subject, "body": body}
 

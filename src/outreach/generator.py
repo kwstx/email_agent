@@ -8,6 +8,7 @@ from loguru import logger
 from src.storage.db import get_session
 from src.storage.models import Company, Contact, Outreach
 from src.outreach.templates import select_template_for_stage
+from src.compliance.suppression import SuppressionManager
 
 # Configuration
 SEQUENCE_GAP_DAYS = 3
@@ -19,7 +20,7 @@ class OutreachManager:
     """
     
     def __init__(self):
-        pass
+        self.suppression_manager = SuppressionManager()
 
     def _get_context(self, company: Company) -> Dict[str, Any]:
         """Attributes the context dictionary from company metadata."""
@@ -73,7 +74,15 @@ class OutreachManager:
     def process_contact(self, session: Session, contact: Contact, company: Company):
         """Decides the next action for a single contact."""
         
-        # 1. Check for Reply (Mock logic - in real world would check Outreach table for 'replied' status)
+        # 0. COMPLIANCE GATE: Check suppression list before any action
+        if contact.email and self.suppression_manager.is_suppressed(session, contact.email):
+            if contact.outreach_status not in ["suppressed", "opt_out"]:
+                contact.outreach_status = "suppressed"
+                session.add(contact)
+                logger.info(f"Contact {contact.email} is suppressed. Blocking outreach.")
+            return
+
+        # 1. Check for Reply
         # If any outreach has status 'replied', update contact and stop.
         last_outreach = session.exec(select(Outreach).where(Outreach.contact_id == contact.id).order_by(desc(Outreach.id))).first()
         
@@ -149,7 +158,7 @@ class OutreachManager:
                     continue
                     
                 for contact in company.contacts:
-                    if contact.outreach_status in ["completed", "replied", "bounced"]:
+                    if contact.outreach_status in ["completed", "replied", "bounced", "opt_out", "suppressed"]:
                         continue
                     
                     self.process_contact(session, contact, company)

@@ -88,3 +88,10 @@ class Reply(SQLModel, table=True):
     thread_id: Optional[str] = None
     
     contact: Contact = Relationship(back_populates="replies")
+
+class SuppressionList(SQLModel, table=True):
+    id: Optional[int] = Field(default=None, primary_key=True)
+    type: str # "email" or "domain"
+    value: str = Field(index=True, unique=True)
+    reason: Optional[str] = None # "opt_out", "bounced", "manual", "compliant", "irrelevant"
+    created_at: datetime = Field(default_factory=datetime.utcnow)

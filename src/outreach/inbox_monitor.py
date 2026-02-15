@@ -8,6 +8,7 @@ from datetime import datetime
 from openai import OpenAI
 from src.storage.db import get_session
 from src.storage.models import Contact, Outreach, Reply
+from src.compliance.suppression import SuppressionManager
 
 class InboxMonitor:
     def __init__(self):
@@ -15,6 +16,7 @@ class InboxMonitor:
         self.email_user = os.getenv("IMAP_USER", "")
         self.email_pass = os.getenv("IMAP_PASSWORD", "")
         self.openai_key = os.getenv("OPENAI_API_KEY")
+        self.suppression_manager = SuppressionManager()
         
         self.openai_client = None
         if self.openai_key:
@@ -149,6 +151,11 @@ class InboxMonitor:
                             contact.outreach_status = "referral_needed"
                         elif category == "opt_out":
                             contact.outreach_status = "opt_out"
+                            # Immediately add to suppression list
+                            self.suppression_manager.suppress_email(
+                                session, contact.email, reason="opt_out"
+                            )
+                            logger.info(f"Contact {contact.email} opted out — added to suppression list.")
                         elif category == "irrelevance":
                             if "bounced" not in contact.outreach_status:
                                 contact.outreach_status = "not_interested"

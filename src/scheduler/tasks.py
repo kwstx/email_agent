@@ -51,3 +51,19 @@ def run_inbox_monitoring():
         monitor.process_inbox()
     except Exception as e:
         logger.error(f"Inbox monitoring failed: {e}")
+
+from src.compliance.suppression import SuppressionManager
+from src.storage.db import get_session
+
+def run_compliance_sync():
+    """Task to sync suppression list and audit compliance state."""
+    logger.info(f"[{datetime.now()}] Starting compliance sync...")
+    try:
+        manager = SuppressionManager()
+        with get_session() as session:
+            count = manager.sync_from_contacts(session)
+            stats = manager.get_suppression_stats(session)
+            session.commit()
+        logger.info(f"Compliance sync complete: {count} new suppressions. Stats: {stats}")
+    except Exception as e:
+        logger.error(f"Compliance sync failed: {e}")

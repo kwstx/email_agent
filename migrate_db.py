@@ -67,6 +67,24 @@ def migrate_db():
         logger.info("stage already exists in outreach table")
 
     conn.commit()
+
+    # Create suppressionlist table if it doesn't exist
+    try:
+        cursor.execute("""
+            CREATE TABLE IF NOT EXISTS suppressionlist (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                type TEXT NOT NULL,
+                value TEXT NOT NULL UNIQUE,
+                reason TEXT,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        """)
+        cursor.execute("CREATE INDEX IF NOT EXISTS ix_suppressionlist_value ON suppressionlist (value)")
+        logger.info("Ensured suppressionlist table exists")
+    except sqlite3.OperationalError as e:
+        logger.info(f"suppressionlist table: {e}")
+
+    conn.commit()
     conn.close()
     logger.success("Database migration completed.")
 
