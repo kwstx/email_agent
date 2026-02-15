@@ -1,11 +1,14 @@
 from loguru import logger
 from datetime import datetime
 
+import asyncio
+from src.scraping.crawler import WebCrawler
+
 def run_scraping():
     """Task to discover and scrape new companies."""
     logger.info(f"[{datetime.now()}] Starting scraping task...")
-    # Logic will go in src/scraping
-    pass
+    crawler = WebCrawler()
+    asyncio.run(crawler.run())
 
 def run_scoring():
     """Task to score scraped companies."""

@@ -18,27 +18,27 @@ This plan outlines the steps for building a fully automated outbound prospecting
     - Source discovery (Search engines, Partner directories, AI lists).
     - Automated extraction and normalization of domains.
     - Duplicate prevention and database storage.
-- [ ] **Step 4: Web Scraper & Signal Detector**
+- [x] **Step 4: Web Scraper & Signal Detector**
     - Scrape homepage, docs, and blogs.
     - Match keywords and patterns from `scoring_config.json`.
     - Calculate fit score.
 
 ## Phase 3: Lead Research & Qualification
-- [ ] **Step 4: Decision Maker Identification**
+- [ ] **Step 5: Decision Maker Identification**
     - Identify technical roles (CTO, VP Eng, Head of AI).
     - Verify roles via LinkedIn/Apollo/etc.
-- [ ] **Step 5: Contact Info Retrieval**
+- [ ] **Step 6: Contact Info Retrieval**
     - Email finding and verification.
 
 ## Phase 4: Outreach & Automation
-- [ ] **Step 6: Personalized Outreach Generation**
+- [ ] **Step 7: Personalized Outreach Generation**
     - LLM-based template generation using detected signals.
-- [ ] **Step 7: Automated Sending & Tracking**
+- [ ] **Step 8: Automated Sending & Tracking**
     - Integration with email provider.
     - Classification of replies (Interest vs. Objection).
 
 ## Phase 5: Optimization & Scaling
-- [ ] **Step 8: Pipeline Integration**
+- [ ] **Step 9: Pipeline Integration**
     - Automatic CRM/Sheet updates.
-- [ ] **Step 9: Continuous Learning**
+- [ ] **Step 10: Continuous Learning**
     - Feedback loop based on reply rates.
