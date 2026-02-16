@@ -174,15 +174,17 @@ if __name__ == "__main__":
     
     # Add automated search source
     queries = [
-        "AI agent orchestration platform startups",
-        "LLM governance and security platforms",
-        "generative AI security startups 2025",
-        "autonomous AI agents for enterprise automation",
+        "AI agent orchestration startups under 100 employees",
+        "seed stage AI agent companies",
+        "early stage LLM governance and security platforms",
+        "generative AI security startups Series A 2025",
         "site:ycombinator.com 'AI agent' 2024",
-        "site:producthunt.com 'AI agents' top",
-        "AI agents conference speakers 2024"
+        "site:crunchbase.com 'series A' 'AI agents'",
+        "autonomous AI agents boutique consultancy",
+        "site:producthunt.com 'AI agents' 2024",
+        "AI agents startup founders list 2024"
     ]
-    engine.add_source(SearchEngineSource(queries, num_results=15))
+    engine.add_source(SearchEngineSource(queries, num_results=20))
     
     # Run the discovery
     try:
