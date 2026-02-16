@@ -172,7 +172,9 @@
           "fast-growing team",
           "boutique",
           "founded in 2024",
-          "scrappy"
+          "scrappy",
+          "Book a Demo",
+          "Meet the Founders"
         ]
       },
       "ENTERPRISE_DISQUALIFIER": {
@@ -187,7 +189,11 @@
           "NASDAQ",
           "NYSE",
           "legacy infrastructure",
-          "corporate social responsibility"
+          "corporate social responsibility",
+          "Investor Relations",
+          "ESG Report",
+          "Global Locations",
+          "Procurement"
         ]
       }
     }

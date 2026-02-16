@@ -35,6 +35,8 @@ class WebCrawler:
             "careers": re.compile(r"careers|jobs|hiring", re.I),
             "product": re.compile(r"product|features|solutions|platform", re.I),
             "pricing": re.compile(r"pricing|plans", re.I),
+            "smb_signal": re.compile(r"book a demo|meet the founders", re.I),
+            "enterprise_signal": re.compile(r"investor relations|esg report|global locations|procurement", re.I),
         }
 
     async def _fetch(self, session: aiohttp.ClientSession, url: str) -> Optional[str]:
