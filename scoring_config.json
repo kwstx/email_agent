@@ -159,6 +159,37 @@
           "oss"
         ]
       }
+    },
+    "COMPANY_SIZE": {
+      "SMB_INDICATOR": {
+        "description": "High-growth SMB/Startup signals",
+        "points": 5,
+        "keywords": [
+          "early-stage",
+          "Series A",
+          "Series B",
+          "venture-backed",
+          "fast-growing team",
+          "boutique",
+          "founded in 2024",
+          "scrappy"
+        ]
+      },
+      "ENTERPRISE_DISQUALIFIER": {
+        "description": "Large Enterprise indicators (Negative points)",
+        "points": -20,
+        "keywords": [
+          "Fortune 500",
+          "Fortune 100",
+          "10,000+ employees",
+          "global presence",
+          "multi-national",
+          "NASDAQ",
+          "NYSE",
+          "legacy infrastructure",
+          "corporate social responsibility"
+        ]
+      }
     }
   },
   "thresholds": {
