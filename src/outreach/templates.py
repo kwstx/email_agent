@@ -54,37 +54,39 @@ class EmailTemplate:
 # --- STAGE 1: INITIAL OUTREACH ---
 STAGE_1_TEMPLATES = [
     EmailTemplate(
-        id="founder_discovery_compliance",
-        subject_template="Quick question / {company_name} agents",
+        id="founder_outreach_v2_active",
+        subject_template="Quick question / {company_name}",
         body_template="""Hi {first_name},
 
-I’ve been following {company_name} and really like to see that you're {observation}.
+I came across {company_name} while mapping teams actively deploying autonomous agents and wanted to reach out.
 
-I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents. We help teams understand and manage {risk_phrase}.
+I'm currently building in the runtime governance space and speaking directly with operators to understand how they're handling unintended agent behavior and operational safeguards in real environments.
 
-This isn’t a pitch. I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+This isn't a sales conversation — I'm still shaping the product, and candid feedback from teams like yours is genuinely influencing how it's being built. If helpful, I'd also be glad to offer you early access at no cost so you can evaluate it hands-on.
 
-Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
+If you'd be open to a brief conversation, I'd really value your perspective.
 
-Thanks so much,
-Kwstas""",
-        trigger_condition=lambda ctx: bool(ctx.get("compliance_exposure"))
+Sincerely,
+Kwstas
+Founder | Engram""",
+        trigger_condition=lambda ctx: bool(ctx.get("compliance_exposure")) # Use this one if they have compliance/risk signals
     ),
     EmailTemplate(
-        id="founder_discovery_general",
+        id="founder_outreach_v2_running",
         subject_template="Connecting / {company_name} agents",
         body_template="""Hi {first_name},
 
-I’ve been following {company_name} and really like that you're {observation}.
+I came across {company_name} while mapping teams running autonomous agents and wanted to reach out.
 
-I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents. We help teams understand and manage {risk_phrase}.
+I'm building a runtime governance tool and speaking with teams to understand how they handle unintended agent actions and operational safeguards. This isn't a sales conversation — your insights could directly shape how we build the product.
 
-This isn’t a pitch. I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+If it's useful, I'd also be happy to provide early access at no cost.
 
-Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
+Would you be open to a brief chat? Your perspective would be invaluable.
 
-Thanks so much,
-Kwstas""",
+Sincerely,
+Kwstas
+Founder | Engram""",
         trigger_condition=lambda ctx: True # Fallback
     )
 ]
