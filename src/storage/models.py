@@ -15,6 +15,7 @@ class Company(SQLModel, table=True):
     description: Optional[str] = None
     industry: Optional[str] = None
     website_content: Optional[str] = None
+    employee_count: Optional[int] = None
     
     # Enrichment status
     is_scraped: bool = Field(default=False)

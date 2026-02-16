@@ -229,6 +229,11 @@ class OutreachManager:
             
             count = 0
             for company in companies:
+                # SMB SIZE FILTER (Step 5)
+                if company.employee_count and company.employee_count > 500:
+                    logger.info(f"Skipping {company.domain} - Employee count {company.employee_count} exceeds SMB threshold (500)")
+                    continue
+
                 if not company.contacts:
                     continue
                     

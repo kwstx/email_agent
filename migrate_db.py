@@ -66,6 +66,12 @@ def migrate_db():
     except sqlite3.OperationalError:
         logger.info("stage already exists in outreach table")
 
+    try:
+        cursor.execute("ALTER TABLE company ADD COLUMN employee_count INTEGER")
+        logger.info("Added employee_count to company table")
+    except sqlite3.OperationalError:
+        logger.info("employee_count already exists in company table")
+
     conn.commit()
 
     # Create suppressionlist table if it doesn't exist

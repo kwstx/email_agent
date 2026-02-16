@@ -20,6 +20,7 @@ def run_scoring():
 
 from src.enrichment.risk_compliance import RiskComplianceEnricher
 from src.enrichment.people_discovery import PeopleDiscoverer
+from src.enrichment.size_verification import SizeVerificationEnricher
 
 def run_enrichment():
     """Task to enrich companies with risk signals and find decision makers."""
@@ -29,7 +30,11 @@ def run_enrichment():
     enricher = RiskComplianceEnricher()
     enricher.run(force=False) # Only process new ones by default
     
-    # 2. People Discovery
+    # 2. Size Verification (Step 5)
+    size_enricher = SizeVerificationEnricher()
+    size_enricher.run(force=False)
+    
+    # 3. People Discovery
     discoverer = PeopleDiscoverer()
     asyncio.run(discoverer.run())
 
