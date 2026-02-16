@@ -1,6 +1,7 @@
 __pycache__/
 *.pyc
 data/*.db
+data/*.json
 logs/
 .env
 .vscode/
