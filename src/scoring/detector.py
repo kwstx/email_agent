@@ -81,6 +81,28 @@ class AgentSignalDetector:
                     "score": category_score,
                     "signals": category_signals
                 })
+
+        # --- Step 4: Careers Page Intensity ---
+        # Give extra weight if the careers page contains "Founding" or "First"
+        if "--- CAREERS ---" in text:
+            careers_parts = text.split("--- CAREERS ---")
+            if len(careers_parts) > 1:
+                careers_content = careers_parts[1].split("---")[0].lower()
+                if "founding" in careers_content or "first" in careers_content:
+                    bonus_points = 5
+                    total_score += bonus_points
+                    reasoning.append({
+                        "category": "SMB_FILTRATION",
+                        "score": bonus_points,
+                        "signals": [{
+                            "intensity": bonus_points,
+                            "count": 1,
+                            "matches": ["founding/first"],
+                            "category": "SMB_FILTRATION",
+                            "description": "Founding/First roles detected on Careers page (SMB Signal)",
+                            "points": bonus_points
+                        }]
+                    })
         
         # Determine Tier based on thresholds
         thresholds = self.config.get("thresholds", {

@@ -134,6 +134,19 @@
           "workflow automation",
           "autonomous systems engineer"
         ]
+      },
+      "SMB_HIRING": {
+        "description": "Early-stage/Founding hiring signals",
+        "points": 4,
+        "keywords": [
+          "founding engineer",
+          "first hire",
+          "founding designer",
+          "founding product",
+          "first engineering hire",
+          "lead engineer",
+          "head of engineering"
+        ]
       }
     },
     "DEV_PLATFORM_MATURITY": {
