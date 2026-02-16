@@ -19,7 +19,7 @@ def run_test(name, command):
 
 def main():
     tests = [
-        ("Unit Tests (Inbox)", "python -m unittest discover tests"),
+        ("System Unit Tests", "python -m unittest discover tests"),
         ("Environment Setup", "python test_setup.py"),
         ("Signal Detection", "python test_detector.py"),
     ]
