@@ -1,9 +1,16 @@
 
 import json
+import os
+import smtplib
+import ssl
+from email.message import EmailMessage
 from datetime import datetime, timedelta
 from typing import List, Dict, Any, Optional
 from sqlmodel import select, Session, desc
 from loguru import logger
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from src.storage.db import get_session
 from src.storage.models import Company, Contact, Outreach
@@ -21,6 +28,11 @@ class OutreachManager:
     
     def __init__(self):
         self.suppression_manager = SuppressionManager()
+        self.smtp_server = os.getenv("SMTP_SERVER")
+        self.smtp_port = int(os.getenv("SMTP_PORT", "587"))
+        self.smtp_user = os.getenv("SMTP_USER")
+        self.smtp_pass = os.getenv("SMTP_PASSWORD")
+        self.email_from = os.getenv("EMAIL_FROM", self.smtp_user)
 
     def _get_context(self, company: Company) -> Dict[str, Any]:
         """Attributes the context dictionary from company metadata."""
@@ -142,18 +154,81 @@ class OutreachManager:
                     pass
 
 
+    def _send_email(self, recipient_email: str, subject: str, body: str) -> bool:
+        """Actually transmits the email via SMTP."""
+        if not all([self.smtp_server, self.smtp_user, self.smtp_pass]):
+            logger.error("SMTP credentials not fully configured in .env")
+            return False
+
+        msg = EmailMessage()
+        msg.set_content(body)
+        msg['Subject'] = subject
+        msg['From'] = self.email_from
+        msg['To'] = recipient_email
+
+        try:
+            context = ssl.create_default_context()
+            if self.smtp_port == 465:
+                with smtplib.SMTP_SSL(self.smtp_server, self.smtp_port, context=context) as server:
+                    server.login(self.smtp_user, self.smtp_pass)
+                    server.send_message(msg)
+            else:
+                with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
+                    server.starttls(context=context)
+                    server.login(self.smtp_user, self.smtp_pass)
+                    server.send_message(msg)
+            return True
+        except Exception as e:
+            logger.error(f"Failed to send email to {recipient_email}: {e}")
+            return False
+
+    def send_drafts(self):
+        """Finds all drafts and sends them."""
+        with get_session() as session:
+            statement = select(Outreach).where(Outreach.status == "draft")
+            drafts = session.exec(statement).all()
+
+            if not drafts:
+                logger.info("No outreach drafts to send.")
+                return
+
+            logger.info(f"Found {len(drafts)} drafts to send.")
+            for outreach in drafts:
+                contact = session.get(Contact, outreach.contact_id)
+                if not contact or not contact.email:
+                    continue
+
+                try:
+                    content = json.loads(outreach.content)
+                    subject = content.get("subject")
+                    body = content.get("body")
+
+                    if self._send_email(contact.email, subject, body):
+                        outreach.status = "sent"
+                        outreach.sent_at = datetime.utcnow()
+                        contact.last_outreach_sent_at = outreach.sent_at
+                        session.add(outreach)
+                        session.add(contact)
+                        logger.success(f"Sent Stage {outreach.stage} email to {contact.email}")
+                    else:
+                        outreach.status = "failed"
+                        session.add(outreach)
+                except Exception as e:
+                    logger.error(f"Error processing draft {outreach.id}: {e}")
+                    outreach.status = "failed"
+                    session.add(outreach)
+
+            session.commit()
+
     def run(self):
         """Main execution loop."""
         with get_session() as session:
-            # Get contacts that are eligible (high fit companies, verified emails?)
-            # For iteration 1, let's look at all contacts in scored companies.
-            
+            # 1. Generate new drafts
             statement = select(Company).where(Company.is_scored == True)
             companies = session.exec(statement).all()
             
             count = 0
             for company in companies:
-                # Filter 'low_fit' if necessary, but assume scoring logic handles inclusion
                 if not company.contacts:
                     continue
                     
@@ -165,7 +240,10 @@ class OutreachManager:
                     count += 1
             
             session.commit()
-            logger.info(f"Processed outreach logic for {count} contacts.")
+            logger.info(f"Processed outreach sequence logic for {count} contacts.")
+        
+        # 2. Send the drafts
+        self.send_drafts()
 
 if __name__ == "__main__":
     manager = OutreachManager()

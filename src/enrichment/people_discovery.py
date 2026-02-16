@@ -248,7 +248,7 @@ class PeopleDiscoverer:
             # Let's assume threshold is stored in fitness_level or we use score.
             # Using fitness_level='high_fit' as per previous prompt implications.
             
-            statement = select(Company).where(Company.fitness_level == "high_fit")
+            statement = select(Company).where(Company.fitness_level == "high_priority")
             companies = session.exec(statement).all()
             
             if not companies:

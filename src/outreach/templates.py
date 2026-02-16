@@ -1,13 +1,7 @@
 
 from typing import Dict, Any, List, Optional
 
-# Opt-out footer appended to every outgoing email
-OPT_OUT_FOOTER = (
-    "\n\n---\n"
-    "If you'd prefer not to receive further emails from me, simply reply "
-    "with 'unsubscribe' or 'remove me' and I'll make sure you're removed "
-    "immediately. No hard feelings at all."
-)
+
 
 class EmailTemplate:
     def __init__(self, id: str, subject_template: str, body_template: str, trigger_condition: callable = None):
@@ -54,8 +48,6 @@ class EmailTemplate:
         subject = self.subject_template.format(**variables)
         body = self.body_template.format(**variables)
 
-        # Append opt-out footer to every email
-        body += OPT_OUT_FOOTER
 
         return {"subject": subject, "body": body}
 
@@ -68,9 +60,9 @@ STAGE_1_TEMPLATES = [
 
 I’ve been following {company_name} and really like to see that you're {observation}.
 
-I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents — basically, helping teams understand and manage {risk_phrase}.
+I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents. We help teams understand and manage {risk_phrase}.
 
-This isn’t a pitch — I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+This isn’t a pitch. I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
 
 Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
 
@@ -85,9 +77,9 @@ Kwstas""",
 
 I’ve been following {company_name} and really like that you're {observation}.
 
-I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents — basically, helping teams understand and manage {risk_phrase}.
+I’m currently working on a small startup, Engram, focused on runtime governance for autonomous agents. We help teams understand and manage {risk_phrase}.
 
-This isn’t a pitch — I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
+This isn’t a pitch. I’m just trying to learn from teams running real agent systems. I’d love to hear how your team thinks about these tricky situations and share a few insights I’ve seen work for other small AI teams.
 
 Would you be open to a very quick 10-minute chat? Totally informal, just a conversation.
 
